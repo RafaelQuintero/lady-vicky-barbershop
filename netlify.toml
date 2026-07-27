@@ -1,4 +1,5 @@
-# Lady Vicky Barbershop — sitio estático (HTML + assets, sin build)
+# Lady Vicky Barbershop — sitio estatico.
+# El "build" solo copia los archivos a dist/ (ver package.json).
 [build]
-  publish = "."
-  command = "echo 'Sitio estatico, sin build'"
+  publish = "dist"
+  command = "npm run build"

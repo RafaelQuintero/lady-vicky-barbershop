@@ -1,0 +1,9 @@
+{
+  "name": "lady-vicky-barbershop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitio estatico de Lady Vicky Barbershop (sin framework). El build solo copia los archivos a dist/.",
+  "scripts": {
+    "build": "rm -rf dist && mkdir -p dist && cp index.html reservas.html legal.html dist/ && cp -R assets dist/assets"
+  }
+}
