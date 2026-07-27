@@ -1,0 +1,4 @@
+# Lady Vicky Barbershop — sitio estático (HTML + assets, sin build)
+[build]
+  publish = "."
+  command = ""

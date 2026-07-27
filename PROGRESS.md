@@ -12,9 +12,9 @@ Proyecto de rediseño de la web de [ladyvickybarbershop.com](https://ladyvickyba
 |---|---|---|
 | 0 | Extracción de contenido del sitio (pestaña a pestaña) | ✅ Hecho |
 | 0 | Descarga y optimización de imágenes al proyecto | ✅ Hecho |
-| 1 | **Demo visual** (landing de una página) | 🔨 En curso |
-| 1 | Multi-idioma con banderas 🇪🇸 🇬🇧 🇫🇷 | 🔨 En curso |
-| 2 | Sistema de citas / reservas (demo, sin BBDD) | ⏳ Pendiente |
+| 1 | **Demo visual** (landing de una página) | ✅ Listo (en revisión) |
+| 1 | Multi-idioma con banderas 🇪🇸 🇬🇧 🇫🇷 | ✅ Listo (en revisión) |
+| 2 | Sistema de citas / reservas (demo, sin BBDD) | 🔨 En curso (v1) |
 | 3 | Conexión WhatsApp (Skala / Make) | ⏳ Pendiente |
 | 4 | Base de datos en Neon (paso final, tras aprobación) | ⏳ Pendiente |
 
@@ -22,8 +22,9 @@ Proyecto de rediseño de la web de [ladyvickybarbershop.com](https://ladyvickyba
 
 ## Decisiones tomadas
 
-- **Formato:** un solo `index.html` autónomo + `assets/img/` (fácil de ver/compartir para aprobar). Al llegar a reservas migraremos a un proyecto con backend.
-- **Imágenes:** descargadas al repo y optimizadas (de ~35 MB a ~4,3 MB). Nada de hotlink a la web vieja.
+- **Formato:** un solo `index.html` autónomo + carpeta `assets/` (fácil de ver/compartir para aprobar). Al llegar a reservas migraremos a un proyecto con backend.
+- **Imágenes:** 16 descargadas al repo y optimizadas con `sips` (de ~40 MB a ~9,3 MB). Nada de hotlink a la web vieja.
+- **Robustez:** progressive enhancement — el contenido es visible aunque el JS no cargue.
 - **Idiomas:** ES (por defecto) / EN / FR con selector de banderas. Implementado **vanilla** (sin librería externa), 100% nuestro.
 - **Reseñas:** el widget de Google no es extraíble. No inventamos testimonios: mostramos datos reales + botón a las reseñas de Google. Los textos reales se añaden cuando Victoria los facilite.
 
@@ -31,6 +32,7 @@ Proyecto de rediseño de la web de [ladyvickybarbershop.com](https://ladyvickyba
 
 - Horario de lunes, sábado y festivos (la web solo indica **Martes a Viernes, 11:30 a 20:30**).
 - Textos reales de reseñas de clientes.
+- **Foto-retrato de Victoria** para "Sobre mí" (los assets actuales son decoración del local, no un retrato suyo).
 - Si quiere blog (la web actual lo tiene; en la demo no está por ahora).
 
 ---
@@ -90,4 +92,6 @@ Proyecto de rediseño de la web de [ladyvickybarbershop.com](https://ladyvickyba
 
 ## Registro de avances
 
-- **2026-07-27** — Extraído todo el contenido del sitio (incl. horario que faltaba). Descargadas y optimizadas 17 imágenes. Creado este MD. Arrancada la Fase 1 (demo visual + multi-idioma).
+- **2026-07-27** — Extraído todo el contenido del sitio (incl. horario que faltaba). Descargadas y optimizadas 16 imágenes. Creado este MD. Arrancada la Fase 1 (demo visual + multi-idioma).
+- **2026-07-27** — Fase 1 completada: landing de 11 secciones construida y verificada en render real (Chrome headless). Selector ES/EN/FR con i18n propio y banderas SVG. Lista para revisión de Victoria.
+- **2026-07-27** — Poste de barbero rediseñado con bucle sin costura. Motion añadido (entrada escalonada del hero, reveals con stagger + blur, contador animado, micro-interacciones), respetando reduced-motion. Página `reservas.html` creada: flujo servicio → fecha/hora → datos → confirmar, con resumen en vivo y envío por WhatsApp. Añadido `netlify.toml` para desplegar como sitio estático.
