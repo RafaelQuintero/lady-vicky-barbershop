@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lady Vicky Barbershop · Barbería tradicional en Malasaña, Madrid</title>
+<meta name="description" content="Barbería tradicional y con estilo en el corazón de Malasaña. Un solo sillón, un cliente por turno y más de 30 años de oficio. Calle de las Minas 14, Madrid." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+<script>document.documentElement.classList.add('js')</script>
+
+<style>
+  :root{
+    --ink:#0B0B0B;
+    --ink-2:#141312;
+    --cream:#F5F3EF;
+    --line-dark:rgba(245,243,239,.14);
+    --line-light:rgba(11,11,11,.12);
+    --orange:#EE7623;
+    --orange-hi:#FF9147;
+    --orange-ink:#C25A10;
+    --pole-red:#E4322B;
+    --pole-blue:#2440C4;
+    --muted-dark:rgba(245,243,239,.62);
+    --muted-light:rgba(11,11,11,.60);
+    --serif:"Bodoni Moda", Georgia, serif;
+    --sans:"Jost", system-ui, sans-serif;
+    --maxw:1240px;
+    --r:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{font-family:var(--sans);background:var(--ink);color:var(--cream);line-height:1.6;font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  ::selection{background:var(--orange);color:var(--ink)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .label{font-size:.72rem;font-weight:500;text-transform:uppercase;letter-spacing:.28em;color:var(--orange)}
+  .serif{font-family:var(--serif)}
+  .em{font-family:var(--serif);font-style:italic;color:var(--orange);font-weight:500}
+  h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.06;letter-spacing:-.01em}
+
+  /* Buttons */
+  .btn{display:inline-flex;align-items:center;gap:.6em;font-family:var(--sans);font-weight:500;font-size:.82rem;text-transform:uppercase;letter-spacing:.18em;padding:15px 26px;border-radius:999px;cursor:pointer;border:1px solid transparent;transition:transform .25s cubic-bezier(.16,1,.3,1),background .25s ease,color .25s ease,border-color .25s ease;white-space:nowrap}
+  .btn i{font-size:1.15em}
+  .btn-primary{background:var(--orange);color:#160a02}
+  .btn-primary:hover{background:var(--orange-hi);transform:translateY(-2px)}
+  .btn-primary:active{transform:translateY(0)}
+  .btn-ghost{border-color:var(--line-dark);color:var(--cream)}
+  .btn-ghost:hover{border-color:var(--orange);color:var(--orange-hi);transform:translateY(-2px)}
+  .btn-ghost.on-light{border-color:var(--line-light);color:var(--ink)}
+  .btn-ghost.on-light:hover{border-color:var(--orange-ink);color:var(--orange-ink)}
+
+  /* Header */
+  header{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .3s ease,border-color .3s ease,backdrop-filter .3s ease;border-bottom:1px solid transparent}
+  header.scrolled{background:rgba(11,11,11,.86);backdrop-filter:saturate(160%) blur(12px);border-bottom-color:var(--line-dark)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:20px}
+  .brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
+  .brand img{height:50px;width:auto}
+  .nav-links{display:flex;align-items:center;gap:28px}
+  .nav-links a{font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-dark);font-weight:400;transition:color .2s ease}
+  .nav-links a:hover{color:var(--cream)}
+  .nav-right{display:flex;align-items:center;gap:16px}
+  .nav-toggle{display:none;background:none;border:0;color:var(--cream);font-size:1.6rem;cursor:pointer}
+
+  /* Language switcher (banderas) */
+  .lang{display:flex;gap:7px;align-items:center;flex-shrink:0}
+  .lang button{width:31px;height:21px;padding:0;border:1px solid var(--line-dark);border-radius:3px;background:none;cursor:pointer;overflow:hidden;display:inline-flex;opacity:.45;transition:opacity .25s ease,transform .2s ease,border-color .25s ease,box-shadow .25s ease}
+  .lang button svg{width:100%;height:100%;display:block}
+  .lang button:hover{opacity:.85;transform:translateY(-1px)}
+  .lang button.active{opacity:1;border-color:var(--orange);box-shadow:0 0 0 1px var(--orange)}
+
+  /* Hero */
+  .hero{position:relative;padding:120px 0 0}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;min-height:calc(100dvh - 120px);padding-bottom:40px}
+  .hero h1{font-size:clamp(2.5rem,5.2vw,4.35rem);margin:22px 0 24px}
+  .hero .sub{font-size:1.08rem;color:var(--muted-dark);max-width:44ch;font-weight:300}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin:30px 0 26px}
+  .metro{display:inline-flex;align-items:center;gap:9px;color:var(--muted-dark);font-size:.85rem}
+  .metro i{color:var(--orange)}
+  .stats{display:flex;gap:38px;margin-top:38px;padding-top:30px;border-top:1px solid var(--line-dark)}
+  .stat .n{font-family:var(--serif);font-size:2.5rem;line-height:1;color:var(--cream)}
+  .stat .t{font-size:.74rem;text-transform:uppercase;letter-spacing:.16em;color:var(--muted-dark);margin-top:8px}
+  .hero-media{position:relative;display:flex;gap:16px;align-items:stretch}
+  .hero-photo{position:relative;flex:1;border-radius:var(--r);overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+  .hero-photo img{width:100%;height:100%;min-height:460px;object-fit:cover}
+  .photo-tag{position:absolute;left:18px;bottom:18px;background:var(--orange);color:#160a02;font-weight:500;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;padding:9px 16px;border-radius:999px;display:flex;align-items:center;gap:8px}
+
+  /* Barber pole */
+  .pole{position:relative;width:30px;border-radius:999px;overflow:hidden;box-shadow:inset 0 0 0 2px rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.4)}
+  .pole::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(48deg,var(--pole-red) 0 13px,#fbfbfb 13px 26px,var(--pole-blue) 26px 39px,#fbfbfb 39px 52px);background-size:100% 104px;animation:pole 1.7s linear infinite}
+  .pole::after{content:"";position:absolute;inset:0;border-radius:999px;box-shadow:inset 6px 0 12px rgba(255,255,255,.25),inset -7px 0 14px rgba(0,0,0,.4)}
+  .pole-cap{height:14px;background:linear-gradient(#d9d5cc,#8f8b82);position:relative;z-index:2}
+  .pole-wrap{display:flex;flex-direction:column;width:30px}
+  .pole-wrap .pole{flex:1}
+  @keyframes pole{to{background-position:0 -104px}}
+
+  /* Marquee */
+  .marquee{background:var(--orange);color:#160a02;overflow:hidden;padding:16px 0;border-top:1px solid rgba(0,0,0,.12);border-bottom:1px solid rgba(0,0,0,.12)}
+  .marquee-track{display:flex;white-space:nowrap;width:max-content;animation:scroll 26s linear infinite}
+  .marquee span{font-family:var(--serif);font-size:1.5rem;font-style:italic;padding:0 28px;display:inline-flex;align-items:center;gap:28px}
+  .marquee .dot{font-family:var(--sans);font-size:.7rem}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  /* Sections */
+  section{position:relative}
+  .band-light{background:var(--cream);color:var(--ink)}
+  .band-light .label{color:var(--orange-ink)}
+  .band-light .em{color:var(--orange-ink)}
+  .sec{padding:110px 0}
+  .sec-head{max-width:60ch}
+  .sec-head h2{font-size:clamp(2rem,4.4vw,3.4rem);margin-top:18px}
+
+  /* Servicios */
+  .serv-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start}
+  .serv-sticky{position:sticky;top:110px}
+  .serv-sticky p{color:var(--muted-light);margin:22px 0 30px;max-width:34ch}
+  .serv-list{border-top:1px solid var(--line-light)}
+  .serv-row{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:26px 22px;border-bottom:1px solid var(--line-light);margin:0 -22px;border-radius:var(--r);transition:background .3s ease,color .3s ease,transform .3s ease}
+  .serv-row h3{font-size:1.55rem}
+  .serv-row .desc{font-size:.94rem;color:var(--muted-light);margin-top:6px;max-width:46ch;transition:color .3s ease}
+  .serv-price{text-align:right;font-family:var(--serif);font-size:1.8rem;white-space:nowrap}
+  .serv-price small{display:block;font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-light);margin-top:6px;transition:color .3s ease}
+  .serv-row:hover{background:var(--ink);color:var(--cream);transform:translateX(4px)}
+  .serv-row:hover .desc,.serv-row:hover .serv-price small{color:var(--muted-dark)}
+
+  /* Doble tarjeta */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .duo-card{position:relative;border-radius:var(--r);overflow:hidden;min-height:520px;display:flex;align-items:flex-end}
+  .duo-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+  .duo-card:hover img{transform:scale(1.05)}
+  .duo-card::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(11,11,11,.92) 0%,rgba(11,11,11,.35) 45%,rgba(11,11,11,0) 75%)}
+  .duo-body{position:relative;z-index:2;padding:36px}
+  .duo-body h3{font-size:2rem}
+  .duo-body p{color:var(--muted-dark);margin:12px 0 16px;max-width:38ch;font-size:.96rem}
+  .duo-body .price{font-family:var(--serif);font-size:1.5rem;color:var(--orange-hi)}
+
+  /* Sobre mí */
+  .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}
+  .about-photo{border-radius:var(--r);overflow:hidden;position:relative}
+  .about-photo img{width:100%;aspect-ratio:4/5;object-fit:cover}
+  .about-photo .pole-badge{position:absolute;top:18px;right:18px}
+  .about-body h2{font-size:clamp(2rem,4vw,3.1rem);margin:16px 0 24px}
+  .about-body p{color:var(--muted-dark);margin-bottom:18px;max-width:52ch}
+  .sign{font-family:var(--serif);font-style:italic;font-size:1.8rem;color:var(--cream);margin-top:26px}
+  .sign small{display:block;font-family:var(--sans);font-style:normal;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-dark);margin-top:8px}
+
+  /* Filosofía */
+  .pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:56px}
+  .pillar{padding:34px 28px;border:1px solid var(--line-dark);border-radius:var(--r);transition:background .35s ease,color .35s ease,transform .35s ease,border-color .35s ease}
+  .pillar i{font-size:2.1rem;color:var(--orange);transition:color .35s ease}
+  .pillar h3{font-size:1.35rem;margin:20px 0 10px}
+  .pillar p{font-size:.92rem;color:var(--muted-dark);transition:color .35s ease}
+  .pillar:hover{background:var(--orange);color:#160a02;transform:translateY(-6px);border-color:var(--orange)}
+  .pillar:hover i,.pillar:hover p{color:#160a02}
+
+  /* Galería */
+  .gal-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:40px}
+  .masonry{column-count:4;column-gap:16px}
+  .masonry a{display:block;margin-bottom:16px;border-radius:12px;overflow:hidden;position:relative;break-inside:avoid}
+  .masonry img{width:100%;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+  .masonry a::after{content:"";position:absolute;inset:0;background:rgba(11,11,11,0);transition:background .4s ease}
+  .masonry a:hover img{transform:scale(1.08)}
+  .masonry a:hover::after{background:rgba(11,11,11,.18)}
+
+  /* Opiniones */
+  .rev-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+  .rev-lead h2{font-size:clamp(2rem,4vw,3rem);margin:16px 0 22px}
+  .rev-lead p{color:var(--muted-light);max-width:40ch;margin-bottom:28px}
+  .figs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .fig{border:1px solid var(--line-light);border-radius:var(--r);padding:28px;transition:border-color .3s ease,transform .3s ease}
+  .fig:hover{border-color:var(--orange-ink);transform:translateY(-4px)}
+  .fig .n{font-family:var(--serif);font-size:2.9rem;line-height:1;color:var(--ink)}
+  .fig .t{font-size:.82rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted-light);margin-top:12px}
+
+  /* Contacto */
+  .con-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:stretch}
+  .con-list{border-top:1px solid var(--line-dark)}
+  .con-row{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--line-dark);align-items:baseline}
+  .con-row .k{font-size:.74rem;text-transform:uppercase;letter-spacing:.18em;color:var(--orange)}
+  .con-row .v{font-size:1.02rem}
+  .con-row .v a:hover{color:var(--orange-hi)}
+  .con-cta{margin-top:34px}
+  .map{border-radius:var(--r);overflow:hidden;min-height:420px;border:1px solid var(--line-dark)}
+  .map iframe{width:100%;height:100%;min-height:420px;border:0;filter:grayscale(.35) contrast(1.05)}
+
+  /* Footer */
+  footer{background:var(--ink-2);border-top:1px solid var(--line-dark);padding:70px 0 34px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:48px}
+  .foot-brand img{height:52px;margin-bottom:20px}
+  .foot-brand p{color:var(--muted-dark);max-width:34ch;font-size:.95rem}
+  .foot-col h4{font-family:var(--sans);font-size:.74rem;text-transform:uppercase;letter-spacing:.2em;color:var(--orange);margin-bottom:18px;font-weight:500}
+  .foot-col a,.foot-col p{display:block;color:var(--muted-dark);font-size:.95rem;margin-bottom:11px;transition:color .2s ease}
+  .foot-col a:hover{color:var(--cream)}
+  .socials{display:flex;gap:14px;margin-top:6px}
+  .socials a{width:42px;height:42px;border:1px solid var(--line-dark);border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--muted-dark);transition:all .25s ease}
+  .socials a:hover{background:var(--orange);color:#160a02;border-color:var(--orange);transform:translateY(-3px)}
+  .foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:26px;border-top:1px solid var(--line-dark);color:var(--muted-dark);font-size:.82rem}
+
+  /* Reveal */
+  .js .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+  .js .reveal.in{opacity:1;transform:none}
+
+  /* Mobile menu */
+  .mobile-menu{position:fixed;inset:0;background:var(--ink);z-index:70;transform:translateY(-100%);transition:transform .45s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;padding:90px 32px 40px}
+  .mobile-menu.open{transform:none}
+  .mobile-menu a{font-family:var(--serif);font-size:2rem;padding:14px 0;border-bottom:1px solid var(--line-dark)}
+  .mobile-menu .btn{margin-top:28px;justify-content:center}
+  .mm-close{position:absolute;top:26px;right:28px;background:none;border:0;color:var(--cream);font-size:1.8rem;cursor:pointer}
+
+  @media(max-width:1000px){
+    .hero-grid,.serv-grid,.about-grid,.rev-grid,.con-grid{grid-template-columns:1fr;gap:40px}
+    .serv-sticky{position:static}
+    .hero{padding-top:100px}
+    .hero-grid{min-height:auto;padding:20px 0 60px}
+    .duo{grid-template-columns:1fr}
+    .pillars{grid-template-columns:1fr 1fr}
+    .masonry{column-count:2}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .about-photo{max-width:460px}
+  }
+  @media(max-width:640px){
+    .nav-links,.nav-right .btn{display:none}
+    .nav-toggle{display:block}
+    .lang{gap:6px}
+    .lang button{width:28px;height:19px}
+    .stats{gap:24px;flex-wrap:wrap}
+    .stat .n{font-size:2rem}
+    .pillars,.figs,.foot-grid{grid-template-columns:1fr}
+    .masonry{column-count:1}
+    .sec{padding:80px 0}
+    .con-row{grid-template-columns:1fr;gap:4px}
+    .foot-bottom{flex-direction:column}
+    .marquee span{font-size:1.2rem}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto}
+    .pole::before,.marquee-track{animation:none}
+    .js .reveal{opacity:1;transform:none;transition:none}
+    .btn:hover,.pillar:hover,.serv-row:hover,.duo-card:hover img{transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header id="header">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Lady Vicky Barbershop">
+      <img src="assets/logo.png" alt="Lady Vicky Barbershop" />
+    </a>
+    <nav class="nav-links">
+      <a href="#servicios" data-i18n="nav.servicios">Servicios</a>
+      <a href="#sobre-mi" data-i18n="nav.sobremi">Sobre mí</a>
+      <a href="#filosofia" data-i18n="nav.filosofia">Filosofía</a>
+      <a href="#galeria" data-i18n="nav.galeria">Galería</a>
+      <a href="#opiniones" data-i18n="nav.opiniones">Opiniones</a>
+      <a href="#contacto" data-i18n="nav.contacto">Contacto</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang" id="lang" role="group" aria-label="Idioma / Language / Langue">
+        <button data-lang="es" class="active" aria-label="Español" title="Español">
+          <svg viewBox="0 0 3 2" preserveAspectRatio="none"><rect width="3" height="2" fill="#AA151B"/><rect y=".5" width="3" height="1" fill="#F1BF00"/></svg>
+        </button>
+        <button data-lang="en" aria-label="English" title="English">
+          <svg viewBox="0 0 60 30" preserveAspectRatio="none"><clipPath id="ukf"><rect width="60" height="30"/></clipPath><g clip-path="url(#ukf)"><rect width="60" height="30" fill="#012169"/><path d="M0,0 60,30 M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30 M60,0 0,30" stroke="#C8102E" stroke-width="4"/><path d="M30,0 V30 M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/></g></svg>
+        </button>
+        <button data-lang="fr" aria-label="Français" title="Français">
+          <svg viewBox="0 0 3 2" preserveAspectRatio="none"><rect width="3" height="2" fill="#fff"/><rect width="1" height="2" fill="#0055A4"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg>
+        </button>
+      </div>
+      <a class="btn btn-primary js-wa" href="#"><i class="ph ph-whatsapp-logo"></i><span data-i18n="cta.reservar">Reservar cita</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menú"><i class="ph ph-list"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mm-close" id="mmClose" aria-label="Cerrar"><i class="ph ph-x"></i></button>
+  <a href="#servicios" data-i18n="nav.servicios">Servicios</a>
+  <a href="#sobre-mi" data-i18n="nav.sobremi">Sobre mí</a>
+  <a href="#filosofia" data-i18n="nav.filosofia">Filosofía</a>
+  <a href="#galeria" data-i18n="nav.galeria">Galería</a>
+  <a href="#opiniones" data-i18n="nav.opiniones">Opiniones</a>
+  <a href="#contacto" data-i18n="nav.contacto">Contacto</a>
+  <a class="btn btn-primary js-wa" href="#"><i class="ph ph-whatsapp-logo"></i><span data-i18n="cta.reservar">Reservar cita</span></a>
+</div>
+
+<span id="top"></span>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="label" data-i18n="hero.eyebrow">Barbería tradicional · Malasaña, Madrid</span>
+      <h1 data-i18n-html="hero.h1">Barbería tradicional y con <span class="em">estilo</span> en el corazón de Malasaña</h1>
+      <p class="sub" data-i18n="hero.sub">Un solo sillón, un cliente por turno. Cortes y barba con más de 30 años de oficio.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary js-wa" href="#"><i class="ph ph-whatsapp-logo"></i><span data-i18n="cta.reservar">Reservar cita</span></a>
+        <a class="btn btn-ghost" href="#servicios"><i class="ph ph-scissors"></i><span data-i18n="cta.verservicios">Ver servicios</span></a>
+      </div>
+      <span class="metro"><i class="ph ph-train-simple"></i><span data-i18n="hero.metro">Metro Noviciado, salida Calle Reyes</span></span>
+      <div class="stats">
+        <div class="stat"><div class="n">+30</div><div class="t" data-i18n="stat.anos">Años de oficio</div></div>
+        <div class="stat"><div class="n">1</div><div class="t" data-i18n="stat.cliente">Cliente por turno</div></div>
+        <div class="stat"><div class="n">3</div><div class="t" data-i18n="stat.idiomas">Idiomas · ES EN FR</div></div>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="pole-wrap" aria-hidden="true">
+        <div class="pole-cap"></div><div class="pole"></div><div class="pole-cap"></div>
+      </div>
+      <div class="hero-photo">
+        <img src="assets/hero.webp" alt="Interior de Lady Vicky Barbershop en Malasaña" />
+        <span class="photo-tag"><i class="ph ph-map-pin"></i>Calle Minas 14</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marquee">
+    <span data-i18n-html="marquee">Corte de pelo <em class="dot">✦</em> Arreglo de barba <em class="dot">✦</em> Pack corte + barba <em class="dot">✦</em> Diseño de cejas <em class="dot">✦</em> Pack corte + cejas <em class="dot">✦</em></span>
+    <span data-i18n-html="marquee">Corte de pelo <em class="dot">✦</em> Arreglo de barba <em class="dot">✦</em> Pack corte + barba <em class="dot">✦</em> Diseño de cejas <em class="dot">✦</em> Pack corte + cejas <em class="dot">✦</em></span>
+  </div>
+</div>
+
+<!-- Servicios -->
+<section class="sec band-light" id="servicios">
+  <div class="wrap serv-grid">
+    <div class="serv-sticky reveal">
+      <span class="label" data-i18n="serv.label">Servicios</span>
+      <h2 class="serif" style="font-size:clamp(2rem,4vw,3rem);margin-top:16px" data-i18n="serv.h2">Cada corte, con su tiempo</h2>
+      <p data-i18n="serv.intro">Sin prisas ni salas llenas. Reserva el tuyo por WhatsApp y ven cuando te toque.</p>
+      <a class="btn btn-primary js-wa" href="#"><i class="ph ph-whatsapp-logo"></i><span data-i18n="cta.reservar">Reservar cita</span></a>
+    </div>
+    <div class="serv-list reveal">
+      <div class="serv-row">
+        <div><h3 class="serif" data-i18n="s1.name">Corte de pelo</h3><p class="desc" data-i18n="s1.desc">Clásico, moderno o con degradado, adaptado a tu rostro y a tu día a día.</p></div>
+        <div class="serv-price">18 €<small>30 min</small></div>
+      </div>
+      <div class="serv-row">
+        <div><h3 class="serif" data-i18n="s2.name">Arreglo de barba</h3><p class="desc" data-i18n="s2.desc">Perfilado, recorte y cuidado profesional para una barba impecable.</p></div>
+        <div class="serv-price">13 €<small>15 min</small></div>
+      </div>
+      <div class="serv-row">
+        <div><h3 class="serif" data-i18n="s3.name">Pack corte + barba</h3><p class="desc" data-i18n="s3.desc">El corte a tu estilo junto a un arreglo de barba completo.</p></div>
+        <div class="serv-price">30 €<small>30 min</small></div>
+      </div>
+      <div class="serv-row">
+        <div><h3 class="serif" data-i18n="s4.name">Pack corte + cejas</h3><p class="desc" data-i18n="s4.desc">Tu corte con un diseño de cejas que enmarca la mirada.</p></div>
+        <div class="serv-price">25 €<small>30 min</small></div>
+      </div>
+      <div class="serv-row">
+        <div><h3 class="serif" data-i18n="s5.name">Diseño de cejas</h3><p class="desc" data-i18n="s5.desc">Perfilado con asesoría según la forma de tu cara.</p></div>
+        <div class="serv-price">7 €<small data-i18n="s5.dur">Rápido</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Doble tarjeta -->
+<section class="sec">
+  <div class="wrap">
+    <div class="duo">
+      <article class="duo-card reveal">
+        <img src="assets/corte.webp" alt="Servicio de corte de pelo" />
+        <div class="duo-body">
+          <h3 class="serif" data-i18n="duo.corte.t">El corte</h3>
+          <p data-i18n="duo.corte.d">Desde estilos clásicos hasta los más atrevidos. Consulta previa según tu rostro y tu estilo de vida.</p>
+          <span class="price" data-i18n="duo.corte.p">Desde 18 €</span>
+        </div>
+      </article>
+      <article class="duo-card reveal">
+        <img src="assets/barba.webp" alt="Servicio de arreglo de barba" />
+        <div class="duo-body">
+          <h3 class="serif" data-i18n="duo.barba.t">La barba</h3>
+          <p data-i18n="duo.barba.d">Perfilado, recorte y cuidado profesional con productos de calidad para que luzca impecable.</p>
+          <span class="price" data-i18n="duo.barba.p">Desde 13 €</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Sobre mí -->
+<section class="sec" id="sobre-mi">
+  <div class="wrap about-grid">
+    <div class="about-photo reveal">
+      <img src="assets/about-1.jpeg" alt="Victoria Rodríguez Vega, fundadora de Lady Vicky Barbershop" />
+      <div class="pole-badge pole-wrap" style="height:96px" aria-hidden="true">
+        <div class="pole-cap"></div><div class="pole"></div><div class="pole-cap"></div>
+      </div>
+    </div>
+    <div class="about-body reveal">
+      <span class="label" data-i18n="about.label">Sobre mí</span>
+      <h2 data-i18n="about.h2">Más de 30 años detrás del sillón</h2>
+      <p data-i18n="about.p1">Soy Victoria Rodríguez Vega, fundadora de Lady Vicky Barbershop. Aquí no hay prisas ni salas llenas: un solo sillón, un cliente cada vez y toda mi atención puesta en ti.</p>
+      <p data-i18n="about.p2">Combino la técnica clásica con las tendencias de hoy, y te atiendo en español, inglés o francés. Cada cita es una experiencia privada, pensada para que salgas como quieres salir.</p>
+      <div class="sign">Victoria Rodríguez Vega<small data-i18n="about.role">Fundadora · Lady Vicky Barbershop</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- Filosofía -->
+<section class="sec" id="filosofia">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="label" data-i18n="phil.label">Filosofía</span>
+      <h2 data-i18n="phil.h2">Por qué elegirnos</h2>
+    </div>
+    <div class="pillars">
+      <div class="pillar reveal"><i class="ph ph-medal"></i><h3 class="serif" data-i18n="p1.t">Experiencia</h3><p data-i18n="p1.d">Más de tres décadas de oficio en cada corte.</p></div>
+      <div class="pillar reveal"><i class="ph ph-armchair"></i><h3 class="serif" data-i18n="p2.t">Exclusividad</h3><p data-i18n="p2.d">Un solo sillón. Tu cita es solo tuya, sin esperas.</p></div>
+      <div class="pillar reveal"><i class="ph ph-handshake"></i><h3 class="serif" data-i18n="p3.t">Cercanía</h3><p data-i18n="p3.d">Trato personal y cercano, atendido en tu idioma.</p></div>
+      <div class="pillar reveal"><i class="ph ph-scissors"></i><h3 class="serif" data-i18n="p4.t">Estilo</h3><p data-i18n="p4.d">Clásico y actual, siempre pensado a tu medida.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Galería -->
+<section class="sec band-light" id="galeria">
+  <div class="wrap">
+    <div class="gal-head reveal">
+      <div class="sec-head">
+        <span class="label" data-i18n="gal.label">Galería</span>
+        <h2 data-i18n="gal.h2">El trabajo habla</h2>
+      </div>
+      <a class="btn btn-ghost on-light" href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><i class="ph ph-instagram-logo"></i>@ladyvicky_barbershop</a>
+    </div>
+    <div class="masonry reveal">
+      <a href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-01.jpg" alt="Trabajo de barbería" loading="lazy" /></a>
+      <a href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-03.jpeg" alt="Trabajo de barbería" loading="lazy" /></a>
+      <a href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-04.jpeg" alt="Trabajo de barbería" loading="lazy" /></a>
+      <a href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-02.jpg" alt="Interior de la barbería" loading="lazy" /></a>
+      <a href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-05.jpeg" alt="Trabajo de barbería" loading="lazy" /></a>
+      <a href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-06.jpeg" alt="Trabajo de barbería" loading="lazy" /></a>
+      <a href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-07.jpeg" alt="Trabajo de barbería" loading="lazy" /></a>
+      <a href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-08.jpeg" alt="Trabajo de barbería" loading="lazy" /></a>
+      <a href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-09.jpeg" alt="Trabajo de barbería" loading="lazy" /></a>
+    </div>
+  </div>
+</section>
+
+<!-- Opiniones -->
+<section class="sec band-light" id="opiniones" style="padding-top:0">
+  <div class="wrap rev-grid">
+    <div class="rev-lead reveal">
+      <span class="label" data-i18n="rev.label">Opiniones</span>
+      <h2 data-i18n="rev.h2">Lo que dicen de nosotros</h2>
+      <p data-i18n="rev.p">La confianza de quienes vuelven cada mes es nuestra mejor carta de presentación.</p>
+      <a class="btn btn-primary" href="https://www.google.com/maps/place/Lady+Vicky+Barbershop/@40.4246435,-3.7062674,17z/data=!4m6!3m5!1s0xd41923fda0f80d9:0x36847448aa258164!8m2!3d40.4246435!4d-3.7059696" target="_blank" rel="noopener"><i class="ph ph-star"></i><span data-i18n="rev.cta">Ver reseñas en Google</span></a>
+    </div>
+    <div class="figs reveal">
+      <div class="fig"><div class="n">+30</div><div class="t" data-i18n="fig1">Años de experiencia</div></div>
+      <div class="fig"><div class="n">1</div><div class="t" data-i18n="fig2">Cliente por turno</div></div>
+      <div class="fig"><div class="n">3</div><div class="t" data-i18n="fig3">Idiomas de atención</div></div>
+      <div class="fig"><div class="n">5</div><div class="t" data-i18n="fig4">Servicios a medida</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Contacto -->
+<section class="sec" id="contacto">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:48px">
+      <span class="label" data-i18n="con.label">Contacto</span>
+      <h2 data-i18n="con.h2">Encuéntranos en Malasaña</h2>
+    </div>
+    <div class="con-grid">
+      <div class="reveal">
+        <div class="con-list">
+          <div class="con-row"><span class="k" data-i18n="con.k1">Dirección</span><span class="v">Calle de las Minas 14, Malasaña<br />Centro, 28004 Madrid</span></div>
+          <div class="con-row"><span class="k" data-i18n="con.k2">Metro</span><span class="v" data-i18n="con.v2">Noviciado, salida Calle Reyes</span></div>
+          <div class="con-row"><span class="k" data-i18n="con.k3">Horario</span><span class="v" data-i18n="con.v3">Martes a Viernes, 11:30 a 20:30</span></div>
+          <div class="con-row"><span class="k">WhatsApp</span><span class="v"><a href="https://wa.me/34651599180" target="_blank" rel="noopener">+34 651 59 91 80</a></span></div>
+          <div class="con-row"><span class="k" data-i18n="con.k5">Email</span><span class="v"><a href="mailto:ladyvickybarbershop@gmail.com">ladyvickybarbershop@gmail.com</a></span></div>
+        </div>
+        <div class="con-cta">
+          <a class="btn btn-primary js-wa" href="#"><i class="ph ph-whatsapp-logo"></i><span data-i18n="cta.reservar">Reservar cita</span></a>
+        </div>
+      </div>
+      <div class="map reveal">
+        <iframe title="Mapa de Lady Vicky Barbershop" src="https://maps.google.com/maps?q=Calle%20de%20las%20Minas%2014%2C%2028004%20Madrid&t=&z=16&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/logo.png" alt="Lady Vicky Barbershop" />
+        <p data-i18n="foot.p">Barbería tradicional y con estilo en el corazón de Malasaña. Un cliente por turno, toda la atención para ti.</p>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot.nav">Navegación</h4>
+        <a href="#servicios" data-i18n="nav.servicios">Servicios</a>
+        <a href="#sobre-mi" data-i18n="nav.sobremi">Sobre mí</a>
+        <a href="#filosofia" data-i18n="nav.filosofia">Filosofía</a>
+        <a href="#galeria" data-i18n="nav.galeria">Galería</a>
+        <a href="#contacto" data-i18n="nav.contacto">Contacto</a>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="nav.contacto">Contacto</h4>
+        <p>Calle de las Minas 14, 28004 Madrid</p>
+        <a href="https://wa.me/34651599180" target="_blank" rel="noopener">+34 651 59 91 80</a>
+        <a href="mailto:ladyvickybarbershop@gmail.com">ladyvickybarbershop@gmail.com</a>
+        <div class="socials">
+          <a href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+          <a href="https://facebook.com/ladyvickybarbershop" target="_blank" rel="noopener" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
+          <a href="https://youtube.com/@ladyvickybarbershop" target="_blank" rel="noopener" aria-label="YouTube"><i class="ph ph-youtube-logo"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Lady Vicky Barbershop. <span data-i18n="foot.rights">Todos los derechos reservados.</span></span>
+      <span data-i18n="foot.tag">Malasaña, Madrid · Hecho con oficio</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ---------- i18n ---------- */
+  const I18N = {
+    "nav.servicios":{es:"Servicios",en:"Services",fr:"Services"},
+    "nav.sobremi":{es:"Sobre mí",en:"About",fr:"À propos"},
+    "nav.filosofia":{es:"Filosofía",en:"Philosophy",fr:"Philosophie"},
+    "nav.galeria":{es:"Galería",en:"Gallery",fr:"Galerie"},
+    "nav.opiniones":{es:"Opiniones",en:"Reviews",fr:"Avis"},
+    "nav.contacto":{es:"Contacto",en:"Contact",fr:"Contact"},
+    "cta.reservar":{es:"Reservar cita",en:"Book now",fr:"Réserver"},
+    "cta.verservicios":{es:"Ver servicios",en:"View services",fr:"Voir les services"},
+    "hero.eyebrow":{es:"Barbería tradicional · Malasaña, Madrid",en:"Traditional barbershop · Malasaña, Madrid",fr:"Barbier traditionnel · Malasaña, Madrid"},
+    "hero.h1":{
+      es:'Barbería tradicional y con <span class="em">estilo</span> en el corazón de Malasaña',
+      en:'A traditional barbershop with <span class="em">style</span> in the heart of Malasaña',
+      fr:'Un barbier traditionnel et avec <span class="em">style</span> au cœur de Malasaña'
+    },
+    "hero.sub":{
+      es:"Un solo sillón, un cliente por turno. Cortes y barba con más de 30 años de oficio.",
+      en:"One chair, one client at a time. Cuts and beards with over 30 years of craft.",
+      fr:"Un seul fauteuil, un client à la fois. Coupes et barbe avec plus de 30 ans de métier."
+    },
+    "hero.metro":{es:"Metro Noviciado, salida Calle Reyes",en:"Noviciado Metro, Calle Reyes exit",fr:"Métro Noviciado, sortie Calle Reyes"},
+    "stat.anos":{es:"Años de oficio",en:"Years of craft",fr:"Ans de métier"},
+    "stat.cliente":{es:"Cliente por turno",en:"Client at a time",fr:"Client à la fois"},
+    "stat.idiomas":{es:"Idiomas · ES EN FR",en:"Languages · ES EN FR",fr:"Langues · ES EN FR"},
+    "marquee":{
+      es:'Corte de pelo <em class="dot">✦</em> Arreglo de barba <em class="dot">✦</em> Pack corte + barba <em class="dot">✦</em> Diseño de cejas <em class="dot">✦</em> Pack corte + cejas <em class="dot">✦</em>',
+      en:'Haircut <em class="dot">✦</em> Beard grooming <em class="dot">✦</em> Cut + beard <em class="dot">✦</em> Brow design <em class="dot">✦</em> Cut + brows <em class="dot">✦</em>',
+      fr:'Coupe de cheveux <em class="dot">✦</em> Taille de barbe <em class="dot">✦</em> Coupe + barbe <em class="dot">✦</em> Dessin des sourcils <em class="dot">✦</em> Coupe + sourcils <em class="dot">✦</em>'
+    },
+    "serv.label":{es:"Servicios",en:"Services",fr:"Services"},
+    "serv.h2":{es:"Cada corte, con su tiempo",en:"Every cut, its own time",fr:"Chaque coupe, son temps"},
+    "serv.intro":{
+      es:"Sin prisas ni salas llenas. Reserva el tuyo por WhatsApp y ven cuando te toque.",
+      en:"No rush, no crowded rooms. Book yours on WhatsApp and come when it's your turn.",
+      fr:"Sans hâte ni salles bondées. Réservez la vôtre sur WhatsApp et venez à votre tour."
+    },
+    "s1.name":{es:"Corte de pelo",en:"Haircut",fr:"Coupe de cheveux"},
+    "s1.desc":{es:"Clásico, moderno o con degradado, adaptado a tu rostro y a tu día a día.",en:"Classic, modern or faded, tailored to your face and daily life.",fr:"Classique, moderne ou dégradé, adapté à votre visage et à votre quotidien."},
+    "s2.name":{es:"Arreglo de barba",en:"Beard grooming",fr:"Taille de barbe"},
+    "s2.desc":{es:"Perfilado, recorte y cuidado profesional para una barba impecable.",en:"Shaping, trimming and professional care for an impeccable beard.",fr:"Contour, coupe et soin professionnel pour une barbe impeccable."},
+    "s3.name":{es:"Pack corte + barba",en:"Cut + beard pack",fr:"Coupe + barbe"},
+    "s3.desc":{es:"El corte a tu estilo junto a un arreglo de barba completo.",en:"Your style cut together with a full beard grooming.",fr:"La coupe à votre style avec une taille de barbe complète."},
+    "s4.name":{es:"Pack corte + cejas",en:"Cut + brows pack",fr:"Coupe + sourcils"},
+    "s4.desc":{es:"Tu corte con un diseño de cejas que enmarca la mirada.",en:"Your cut with brow design that frames your look.",fr:"Votre coupe avec un dessin des sourcils qui encadre le regard."},
+    "s5.name":{es:"Diseño de cejas",en:"Brow design",fr:"Dessin des sourcils"},
+    "s5.desc":{es:"Perfilado con asesoría según la forma de tu cara.",en:"Shaping with advice based on your face shape.",fr:"Contour avec conseils selon la forme de votre visage."},
+    "s5.dur":{es:"Rápido",en:"Quick",fr:"Rapide"},
+    "duo.corte.t":{es:"El corte",en:"The cut",fr:"La coupe"},
+    "duo.corte.d":{es:"Desde estilos clásicos hasta los más atrevidos. Consulta previa según tu rostro y tu estilo de vida.",en:"From classic styles to the boldest. A prior consult based on your face and lifestyle.",fr:"Des styles classiques aux plus audacieux. Une consultation selon votre visage et votre style de vie."},
+    "duo.corte.p":{es:"Desde 18 €",en:"From 18 €",fr:"À partir de 18 €"},
+    "duo.barba.t":{es:"La barba",en:"The beard",fr:"La barbe"},
+    "duo.barba.d":{es:"Perfilado, recorte y cuidado profesional con productos de calidad para que luzca impecable.",en:"Shaping, trimming and professional care with quality products for an impeccable look.",fr:"Contour, coupe et soin professionnel avec des produits de qualité pour un rendu impeccable."},
+    "duo.barba.p":{es:"Desde 13 €",en:"From 13 €",fr:"À partir de 13 €"},
+    "about.label":{es:"Sobre mí",en:"About me",fr:"À propos"},
+    "about.h2":{es:"Más de 30 años detrás del sillón",en:"Over 30 years behind the chair",fr:"Plus de 30 ans derrière le fauteuil"},
+    "about.p1":{es:"Soy Victoria Rodríguez Vega, fundadora de Lady Vicky Barbershop. Aquí no hay prisas ni salas llenas: un solo sillón, un cliente cada vez y toda mi atención puesta en ti.",en:"I'm Victoria Rodríguez Vega, founder of Lady Vicky Barbershop. No rush, no crowded rooms here: one chair, one client at a time and all my attention on you.",fr:"Je suis Victoria Rodríguez Vega, fondatrice de Lady Vicky Barbershop. Ici, pas de hâte ni de salles bondées : un seul fauteuil, un client à la fois et toute mon attention pour vous."},
+    "about.p2":{es:"Combino la técnica clásica con las tendencias de hoy, y te atiendo en español, inglés o francés. Cada cita es una experiencia privada, pensada para que salgas como quieres salir.",en:"I blend classic technique with today's trends, and I serve you in Spanish, English or French. Every appointment is a private experience, made for you to leave exactly as you want.",fr:"Je combine la technique classique avec les tendances actuelles, et je vous reçois en espagnol, anglais ou français. Chaque rendez-vous est une expérience privée, pensée pour que vous repartiez comme vous le souhaitez."},
+    "about.role":{es:"Fundadora · Lady Vicky Barbershop",en:"Founder · Lady Vicky Barbershop",fr:"Fondatrice · Lady Vicky Barbershop"},
+    "phil.label":{es:"Filosofía",en:"Philosophy",fr:"Philosophie"},
+    "phil.h2":{es:"Por qué elegirnos",en:"Why choose us",fr:"Pourquoi nous choisir"},
+    "p1.t":{es:"Experiencia",en:"Experience",fr:"Expérience"},
+    "p1.d":{es:"Más de tres décadas de oficio en cada corte.",en:"Over three decades of craft in every cut.",fr:"Plus de trois décennies de métier dans chaque coupe."},
+    "p2.t":{es:"Exclusividad",en:"Exclusivity",fr:"Exclusivité"},
+    "p2.d":{es:"Un solo sillón. Tu cita es solo tuya, sin esperas.",en:"One chair. Your appointment is yours alone, no waiting.",fr:"Un seul fauteuil. Votre rendez-vous est le vôtre, sans attente."},
+    "p3.t":{es:"Cercanía",en:"Closeness",fr:"Proximité"},
+    "p3.d":{es:"Trato personal y cercano, atendido en tu idioma.",en:"Personal, warm service in your own language.",fr:"Un service personnel et chaleureux, dans votre langue."},
+    "p4.t":{es:"Estilo",en:"Style",fr:"Style"},
+    "p4.d":{es:"Clásico y actual, siempre pensado a tu medida.",en:"Classic and current, always made to measure.",fr:"Classique et actuel, toujours sur mesure."},
+    "gal.label":{es:"Galería",en:"Gallery",fr:"Galerie"},
+    "gal.h2":{es:"El trabajo habla",en:"The work speaks",fr:"Le travail parle"},
+    "rev.label":{es:"Opiniones",en:"Reviews",fr:"Avis"},
+    "rev.h2":{es:"Lo que dicen de nosotros",en:"What they say about us",fr:"Ce qu'ils disent de nous"},
+    "rev.p":{es:"La confianza de quienes vuelven cada mes es nuestra mejor carta de presentación.",en:"The trust of those who return every month is our best calling card.",fr:"La confiance de ceux qui reviennent chaque mois est notre meilleure carte de visite."},
+    "rev.cta":{es:"Ver reseñas en Google",en:"See Google reviews",fr:"Voir les avis Google"},
+    "fig1":{es:"Años de experiencia",en:"Years of experience",fr:"Ans d'expérience"},
+    "fig2":{es:"Cliente por turno",en:"Client at a time",fr:"Client à la fois"},
+    "fig3":{es:"Idiomas de atención",en:"Languages spoken",fr:"Langues parlées"},
+    "fig4":{es:"Servicios a medida",en:"Tailored services",fr:"Services sur mesure"},
+    "con.label":{es:"Contacto",en:"Contact",fr:"Contact"},
+    "con.h2":{es:"Encuéntranos en Malasaña",en:"Find us in Malasaña",fr:"Trouvez-nous à Malasaña"},
+    "con.k1":{es:"Dirección",en:"Address",fr:"Adresse"},
+    "con.k2":{es:"Metro",en:"Metro",fr:"Métro"},
+    "con.v2":{es:"Noviciado, salida Calle Reyes",en:"Noviciado, Calle Reyes exit",fr:"Noviciado, sortie Calle Reyes"},
+    "con.k3":{es:"Horario",en:"Hours",fr:"Horaires"},
+    "con.v3":{es:"Martes a Viernes, 11:30 a 20:30",en:"Tuesday to Friday, 11:30 to 20:30",fr:"Mardi au vendredi, 11h30 à 20h30"},
+    "con.k5":{es:"Email",en:"Email",fr:"E-mail"},
+    "foot.p":{es:"Barbería tradicional y con estilo en el corazón de Malasaña. Un cliente por turno, toda la atención para ti.",en:"A traditional barbershop with style in the heart of Malasaña. One client at a time, all the attention for you.",fr:"Un barbier traditionnel et avec style au cœur de Malasaña. Un client à la fois, toute l'attention pour vous."},
+    "foot.nav":{es:"Navegación",en:"Navigation",fr:"Navigation"},
+    "foot.rights":{es:"Todos los derechos reservados.",en:"All rights reserved.",fr:"Tous droits réservés."},
+    "foot.tag":{es:"Malasaña, Madrid · Hecho con oficio",en:"Malasaña, Madrid · Crafted with care",fr:"Malasaña, Madrid · Fait avec métier"}
+  };
+
+  const WA_MSG = {
+    es:"Hola! Quiero una cita, por favor",
+    en:"Hi! I'd like to book an appointment, please",
+    fr:"Bonjour ! Je voudrais un rendez-vous, s'il vous plaît"
+  };
+
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const t = I18N[el.getAttribute('data-i18n')];
+      if(t && t[lang]!=null) el.textContent = t[lang];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+      const t = I18N[el.getAttribute('data-i18n-html')];
+      if(t && t[lang]!=null) el.innerHTML = t[lang];
+    });
+    const wa = "https://wa.me/34651599180?text=" + encodeURIComponent(WA_MSG[lang]);
+    document.querySelectorAll('.js-wa').forEach(a=>a.setAttribute('href', wa));
+    document.querySelectorAll('#lang button').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+    try{ localStorage.setItem('lv_lang', lang); }catch(e){}
+  }
+
+  document.querySelectorAll('#lang button').forEach(b=>{
+    b.addEventListener('click', ()=>setLang(b.dataset.lang));
+  });
+
+  let saved = 'es';
+  try{ saved = localStorage.getItem('lv_lang') || 'es'; }catch(e){}
+  if(!['es','en','fr'].includes(saved)) saved='es';
+  setLang(saved);
+
+  /* ---------- Header scroll ---------- */
+  const header = document.getElementById('header');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 20);
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  /* ---------- Mobile menu ---------- */
+  const menu = document.getElementById('mobileMenu');
+  document.getElementById('navToggle').addEventListener('click', ()=>menu.classList.add('open'));
+  document.getElementById('mmClose').addEventListener('click', ()=>menu.classList.remove('open'));
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>menu.classList.remove('open')));
+
+  /* ---------- Scroll reveal ---------- */
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.14, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
