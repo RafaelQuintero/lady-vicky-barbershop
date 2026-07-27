@@ -108,7 +108,10 @@ Proyecto de rediseño de la web de [ladyvickybarbershop.com](https://ladyvickyba
 
 ## Ideas pendientes de Rafael (28 jul) — POR HACER
 
-- ⏳ **Scroll horizontal** estilo [hisbarberia.com](https://www.hisbarberia.com) (una sección que se desplaza en horizontal al bajar). Candidata: la galería o una tira de "proceso/ritual". Con nuestros colores.
-- ⏳ **Fondos difuminados / glassmorphism** (frosted glass, blobs de luz suaves) manteniendo paleta y esencia.
-- ⏳ **Ideas de Pinterest**: pendiente (Pinterest requiere login y no se puede scrapear fácil; tirar de hisbarbería + criterio de diseño).
-- ⏳ Pulir títulos de la página legal (numeración romana en mayúsculas correcta).
+- ✅ **Scroll horizontal** en la galería (GSAP ScrollTrigger en escritorio; carrusel deslizable en móvil).
+- ✅ **Fondos difuminados** (foco de luz suave en el hero).
+- ✅ **Desplegado en Netlify** → `vicky-barber.netlify.app` (build vía `package.json` → `dist/`; el `netlify.toml`/UI ejecutan `npm run build`).
+- ✅ Arreglos móvil: desbordamiento del hero (`min-width:0`), stats, hover táctil "pegado" (`@media(hover:none)`), animaciones sin `blur` en móvil.
+- ⏳ **Ideas de Pinterest**: pendiente (requiere login; tirar de hisbarbería + criterio de diseño).
+- ⏳ Pulir títulos de la página legal (numeración romana en mayúsculas).
+- ⏳ Revisar bien en móvil real (el headless renderiza a 500px mínimo, no llega a 390px).
