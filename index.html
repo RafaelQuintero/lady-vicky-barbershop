@@ -8,25 +8,25 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600;1,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
 <script>document.documentElement.classList.add('js')</script>
 
 <style>
   :root{
-    --ink:#0B0B0B;
-    --ink-2:#141312;
+    --ink:#232221;
+    --ink-2:#2B2926;
     --cream:#F5F3EF;
     --line-dark:rgba(245,243,239,.14);
     --line-light:rgba(11,11,11,.12);
-    --orange:#EE7623;
-    --orange-hi:#FF9147;
-    --orange-ink:#C25A10;
+    --orange:#CC4F02;
+    --orange-hi:#E96A1C;
+    --orange-ink:#A84100;
     --pole-red:#E4322B;
     --pole-blue:#2440C4;
     --muted-dark:rgba(245,243,239,.62);
     --muted-light:rgba(11,11,11,.60);
-    --serif:"Bodoni Moda", Georgia, serif;
+    --serif:"Playfair Display", Georgia, serif;
     --sans:"Jost", system-ui, sans-serif;
     --maxw:1240px;
     --r:14px;
@@ -42,8 +42,8 @@
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
   .label{font-size:.72rem;font-weight:500;text-transform:uppercase;letter-spacing:.28em;color:var(--orange)}
   .serif{font-family:var(--serif)}
-  .em{font-family:var(--serif);font-style:italic;color:var(--orange);font-weight:500}
-  h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.06;letter-spacing:-.01em}
+  .em{font-family:var(--serif);font-style:italic;color:var(--orange);font-weight:600}
+  h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.1;letter-spacing:-.005em;text-rendering:optimizeLegibility}
 
   /* Buttons */
   .btn{display:inline-flex;align-items:center;gap:.6em;font-family:var(--sans);font-weight:500;font-size:.82rem;text-transform:uppercase;letter-spacing:.18em;padding:15px 26px;border-radius:999px;cursor:pointer;border:1px solid transparent;transition:transform .25s cubic-bezier(.16,1,.3,1),background .25s ease,color .25s ease,border-color .25s ease;white-space:nowrap}
@@ -58,7 +58,7 @@
 
   /* Header */
   header{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .3s ease,border-color .3s ease,backdrop-filter .3s ease;border-bottom:1px solid transparent}
-  header.scrolled{background:rgba(11,11,11,.86);backdrop-filter:saturate(160%) blur(12px);border-bottom-color:var(--line-dark)}
+  header.scrolled{background:rgba(25,24,23,.9);backdrop-filter:saturate(160%) blur(12px);border-bottom-color:var(--line-dark)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:20px}
   .brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
   .brand img{height:50px;width:auto}
@@ -76,7 +76,8 @@
   .lang button.active{opacity:1;border-color:var(--orange);box-shadow:0 0 0 1px var(--orange)}
 
   /* Hero */
-  .hero{position:relative;padding:120px 0 0}
+  .hero{position:relative;padding:120px 0 0;overflow:hidden}
+  .hero .wrap{position:relative;z-index:1}
   .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;min-height:calc(100dvh - 120px);padding-bottom:40px}
   .hero h1{font-size:clamp(2.5rem,5.2vw,4.35rem);margin:22px 0 24px}
   .hero .sub{font-size:1.08rem;color:var(--muted-dark);max-width:44ch;font-weight:300}
@@ -170,6 +171,31 @@
   .masonry a:hover img{transform:scale(1.08)}
   .masonry a:hover::after{background:rgba(11,11,11,.18)}
 
+  /* Galería horizontal */
+  .galh{position:relative;background:var(--ink);overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+  .galh::-webkit-scrollbar{height:0}
+  .galh.is-pinned{height:100dvh;overflow:hidden;scroll-snap-type:none}
+  .galh-track{display:flex;align-items:center;gap:24px;width:max-content;padding:70px 6vw;will-change:transform}
+  .galh.is-pinned .galh-track{height:100dvh;padding-top:0;padding-bottom:0}
+  .galh-intro{flex:0 0 auto;width:min(82vw,400px);padding-right:16px;position:relative;z-index:1}
+  .galh-intro h2{font-size:clamp(2rem,4vw,3.2rem);margin:16px 0 14px}
+  .galh-sub{color:var(--muted-dark);max-width:34ch;margin-bottom:24px}
+  .galh-item{flex:0 0 auto;width:clamp(270px,30vw,440px);height:min(72vh,600px);border-radius:var(--r);overflow:hidden;position:relative;scroll-snap-align:center;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+  .galh-item img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--eo)}
+  .galh-item:hover img{transform:scale(1.06)}
+
+  /* Focos difuminados (glassmorphism ambiental) */
+  .glow{position:absolute;border-radius:50%;pointer-events:none;filter:blur(90px);z-index:0}
+  .glow-1{width:480px;height:480px;background:radial-gradient(circle,rgba(204,79,2,.24),transparent 68%);top:-150px;left:-120px}
+  .glow-2{width:440px;height:440px;background:radial-gradient(circle,rgba(204,79,2,.16),transparent 70%);right:-120px;top:12%}
+  @media(prefers-reduced-transparency:reduce){.glow{display:none}}
+
+  @media(max-width:899px){
+    .galh-track{padding:70px 18px}
+    .galh-intro{width:74vw}
+    .galh-item{width:76vw;height:56vh}
+  }
+
   /* Opiniones */
   .rev-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
   .rev-lead h2{font-size:clamp(2rem,4vw,3rem);margin:16px 0 22px}
@@ -203,11 +229,16 @@
   .socials a{width:42px;height:42px;border:1px solid var(--line-dark);border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--muted-dark);transition:all .25s ease}
   .socials a:hover{background:var(--orange);color:#160a02;border-color:var(--orange);transform:translateY(-3px)}
   .foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:26px;border-top:1px solid var(--line-dark);color:var(--muted-dark);font-size:.82rem}
+  .foot-lang{margin-top:22px}
+  .foot-legal a:hover{color:var(--orange-hi)}
+  .floatbar{position:fixed;bottom:22px;right:22px;z-index:55;display:flex;align-items:center;gap:14px;padding:8px 8px 8px 16px;background:rgba(25,24,23,.82);backdrop-filter:blur(14px);border:1px solid var(--line-dark);border-radius:999px;box-shadow:0 14px 44px rgba(0,0,0,.45);opacity:0;transform:translateY(22px);pointer-events:none;transition:opacity .45s var(--eo),transform .45s var(--eo)}
+  .floatbar.show{opacity:1;transform:none;pointer-events:auto}
+  .floatbar .btn{padding:13px 22px;font-size:.76rem}
 
   /* Reveal */
   .js .reveal{opacity:0}
-  .js .reveal.in{opacity:1;animation:revealIn .75s var(--eo) backwards;animation-delay:calc(var(--i,0)*.07s)}
-  @keyframes revealIn{from{opacity:0;transform:translateY(26px);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+  .js .reveal.in{opacity:1;animation:revealIn .9s var(--eo) backwards;animation-delay:calc(var(--i,0)*.08s)}
+  @keyframes revealIn{from{opacity:0;transform:translateY(40px);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
 
   /* Mobile menu */
   .mobile-menu{position:fixed;inset:0;background:var(--ink);z-index:70;transform:translateY(-100%);transition:transform .45s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;padding:90px 32px 40px}
@@ -232,13 +263,18 @@
     .nav-toggle{display:block}
     .lang{gap:6px}
     .lang button{width:28px;height:19px}
-    .stats{gap:24px;flex-wrap:wrap}
-    .stat .n{font-size:2rem}
+    .hero h1{font-size:2.15rem}
+    .hero-cta{flex-direction:column;align-items:stretch}
+    .hero-cta .btn{width:100%;justify-content:center}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .stat .n{font-size:1.9rem}
     .pillars,.figs,.foot-grid{grid-template-columns:1fr}
-    .masonry{column-count:1}
-    .sec{padding:80px 0}
+    .masonry{column-count:2}
+    .sec{padding:76px 0}
     .con-row{grid-template-columns:1fr;gap:4px}
     .foot-bottom{flex-direction:column}
+    .floatbar{left:14px;right:14px;bottom:14px;justify-content:space-between;gap:10px}
+    .floatbar .btn{padding:12px 16px}
     .marquee span{font-size:1.2rem}
   }
   @media(prefers-reduced-motion:reduce){
@@ -316,8 +352,15 @@
 
 <span id="top"></span>
 
+<!-- Barra flotante: idioma + reservar -->
+<div class="floatbar" id="floatbar">
+  <div class="fb-lang" data-lang-clone></div>
+  <a class="btn btn-primary" href="reservas.html"><i class="ph ph-calendar-check"></i><span data-i18n="cta.reservar">Reservar cita</span></a>
+</div>
+
 <!-- Hero -->
 <section class="hero">
+  <span class="glow glow-1" aria-hidden="true"></span>
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <span class="label" data-i18n="hero.eyebrow">Barbería tradicional · Malasaña, Madrid</span>
@@ -335,9 +378,6 @@
       </div>
     </div>
     <div class="hero-media">
-      <div class="pole-wrap" aria-hidden="true">
-        <div class="pole-cap top"></div><div class="pole"></div><div class="pole-cap bottom"></div>
-      </div>
       <div class="hero-photo">
         <img src="assets/hero.webp" alt="Interior de Lady Vicky Barbershop en Malasaña" />
         <span class="photo-tag"><i class="ph ph-map-pin"></i>Calle Minas 14</span>
@@ -417,9 +457,6 @@
   <div class="wrap about-grid">
     <div class="about-photo reveal">
       <img src="assets/about-1.jpeg" alt="Victoria Rodríguez Vega, fundadora de Lady Vicky Barbershop" />
-      <div class="pole-badge pole-wrap" style="height:96px" aria-hidden="true">
-        <div class="pole-cap top"></div><div class="pole"></div><div class="pole-cap bottom"></div>
-      </div>
     </div>
     <div class="about-body reveal">
       <span class="label" data-i18n="about.label">Sobre mí</span>
@@ -447,27 +484,25 @@
   </div>
 </section>
 
-<!-- Galería -->
-<section class="sec band-light" id="galeria">
-  <div class="wrap">
-    <div class="gal-head reveal">
-      <div class="sec-head">
-        <span class="label" data-i18n="gal.label">Galería</span>
-        <h2 data-i18n="gal.h2">El trabajo habla</h2>
-      </div>
-      <a class="btn btn-ghost on-light" href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><i class="ph ph-instagram-logo"></i>@ladyvicky_barbershop</a>
+<!-- Galería (scroll horizontal) -->
+<section class="galh" id="galeria">
+  <span class="glow glow-2" aria-hidden="true"></span>
+  <div class="galh-track" id="galhTrack">
+    <div class="galh-intro">
+      <span class="label" data-i18n="gal.label">Galería</span>
+      <h2 data-i18n="gal.h2">El trabajo habla</h2>
+      <p class="galh-sub" data-i18n="gal.sub">Desliza para ver cortes, barbas y el ambiente del local.</p>
+      <a class="btn btn-ghost" href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><i class="ph ph-instagram-logo"></i>@ladyvicky_barbershop</a>
     </div>
-    <div class="masonry reveal-stagger">
-      <a href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-01.jpg" alt="Trabajo de barbería" loading="lazy" /></a>
-      <a href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-03.jpeg" alt="Trabajo de barbería" loading="lazy" /></a>
-      <a href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-04.jpeg" alt="Trabajo de barbería" loading="lazy" /></a>
-      <a href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-02.jpg" alt="Interior de la barbería" loading="lazy" /></a>
-      <a href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-05.jpeg" alt="Trabajo de barbería" loading="lazy" /></a>
-      <a href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-06.jpeg" alt="Trabajo de barbería" loading="lazy" /></a>
-      <a href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-07.jpeg" alt="Trabajo de barbería" loading="lazy" /></a>
-      <a href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-08.jpeg" alt="Trabajo de barbería" loading="lazy" /></a>
-      <a href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-09.jpeg" alt="Trabajo de barbería" loading="lazy" /></a>
-    </div>
+    <a class="galh-item" href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-01.jpg" alt="Trabajo de barbería" loading="lazy" /></a>
+    <a class="galh-item" href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-03.jpeg" alt="Trabajo de barbería" loading="lazy" /></a>
+    <a class="galh-item" href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-04.jpeg" alt="Trabajo de barbería" loading="lazy" /></a>
+    <a class="galh-item" href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-02.jpg" alt="Interior de la barbería" loading="lazy" /></a>
+    <a class="galh-item" href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-05.jpeg" alt="Trabajo de barbería" loading="lazy" /></a>
+    <a class="galh-item" href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-06.jpeg" alt="Trabajo de barbería" loading="lazy" /></a>
+    <a class="galh-item" href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-07.jpeg" alt="Trabajo de barbería" loading="lazy" /></a>
+    <a class="galh-item" href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-08.jpeg" alt="Trabajo de barbería" loading="lazy" /></a>
+    <a class="galh-item" href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><img src="assets/gallery-09.jpeg" alt="Trabajo de barbería" loading="lazy" /></a>
   </div>
 </section>
 
@@ -523,6 +558,7 @@
       <div class="foot-brand">
         <img src="assets/logo.png" alt="Lady Vicky Barbershop" />
         <p data-i18n="foot.p">Barbería tradicional y con estilo en el corazón de Malasaña. Un cliente por turno, toda la atención para ti.</p>
+        <div class="foot-lang" data-lang-clone></div>
       </div>
       <div class="foot-col">
         <h4 data-i18n="foot.nav">Navegación</h4>
@@ -546,6 +582,7 @@
     </div>
     <div class="foot-bottom">
       <span>© <span id="year"></span> Lady Vicky Barbershop. <span data-i18n="foot.rights">Todos los derechos reservados.</span></span>
+      <span class="foot-legal"><a href="legal.html#aviso">Aviso legal</a> · <a href="legal.html#privacidad">Privacidad</a> · <a href="legal.html#cookies">Cookies</a> · <a href="legal.html#accesibilidad">Accesibilidad</a></span>
       <span data-i18n="foot.tag">Malasaña, Madrid · Hecho con oficio</span>
     </div>
   </div>
@@ -623,6 +660,7 @@
     "p4.d":{es:"Clásico y actual, siempre pensado a tu medida.",en:"Classic and current, always made to measure.",fr:"Classique et actuel, toujours sur mesure."},
     "gal.label":{es:"Galería",en:"Gallery",fr:"Galerie"},
     "gal.h2":{es:"El trabajo habla",en:"The work speaks",fr:"Le travail parle"},
+    "gal.sub":{es:"Desliza para ver cortes, barbas y el ambiente del local.",en:"Slide to see cuts, beards and the shop's atmosphere.",fr:"Faites glisser pour voir coupes, barbes et l'ambiance du salon."},
     "rev.label":{es:"Opiniones",en:"Reviews",fr:"Avis"},
     "rev.h2":{es:"Lo que dicen de nosotros",en:"What they say about us",fr:"Ce qu'ils disent de nous"},
     "rev.p":{es:"La confianza de quienes vuelven cada mes es nuestra mejor carta de presentación.",en:"The trust of those who return every month is our best calling card.",fr:"La confiance de ceux qui reviennent chaque mois est notre meilleure carte de visite."},
@@ -663,11 +701,16 @@
     });
     const wa = "https://wa.me/34651599180?text=" + encodeURIComponent(WA_MSG[lang]);
     document.querySelectorAll('.js-wa').forEach(a=>a.setAttribute('href', wa));
-    document.querySelectorAll('#lang button').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+    document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
     try{ localStorage.setItem('lv_lang', lang); }catch(e){}
   }
 
-  document.querySelectorAll('#lang button').forEach(b=>{
+  // Clonar el selector de idioma al footer y a la barra flotante
+  const langMaster = document.getElementById('lang');
+  document.querySelectorAll('[data-lang-clone]').forEach(slot=>{
+    const c = langMaster.cloneNode(true); c.removeAttribute('id'); slot.appendChild(c);
+  });
+  document.querySelectorAll('.lang button').forEach(b=>{
     b.addEventListener('click', ()=>setLang(b.dataset.lang));
   });
 
@@ -678,7 +721,11 @@
 
   /* ---------- Header scroll ---------- */
   const header = document.getElementById('header');
-  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 20);
+  const floatbar = document.getElementById('floatbar');
+  const onScroll = () => {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+    if(floatbar) floatbar.classList.toggle('show', window.scrollY > window.innerHeight*0.65);
+  };
   onScroll();
   window.addEventListener('scroll', onScroll, {passive:true});
 
@@ -714,6 +761,25 @@
   setTimeout(()=> document.querySelectorAll('.hero .stat .n').forEach(countEl), 620);
 
   document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  if(!window.gsap||!window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var desktop = matchMedia('(min-width:900px)').matches;
+  var track = document.getElementById('galhTrack');
+  var wrap = document.getElementById('galeria');
+  if(track && wrap && desktop && !reduce){
+    wrap.classList.add('is-pinned');
+    var dist = function(){ return track.scrollWidth - window.innerWidth; };
+    gsap.to(track, {x: function(){ return -dist(); }, ease:'none',
+      scrollTrigger:{trigger:wrap, start:'top top', end:function(){ return '+=' + dist(); }, pin:true, scrub:1, invalidateOnRefresh:true}});
+    window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
+  }
+})();
 </script>
 </body>
 </html>

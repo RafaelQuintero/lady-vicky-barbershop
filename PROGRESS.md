@@ -95,3 +95,20 @@ Proyecto de rediseño de la web de [ladyvickybarbershop.com](https://ladyvickyba
 - **2026-07-27** — Extraído todo el contenido del sitio (incl. horario que faltaba). Descargadas y optimizadas 16 imágenes. Creado este MD. Arrancada la Fase 1 (demo visual + multi-idioma).
 - **2026-07-27** — Fase 1 completada: landing de 11 secciones construida y verificada en render real (Chrome headless). Selector ES/EN/FR con i18n propio y banderas SVG. Lista para revisión de Victoria.
 - **2026-07-27** — Poste de barbero rediseñado con bucle sin costura. Motion añadido (entrada escalonada del hero, reveals con stagger + blur, contador animado, micro-interacciones), respetando reduced-motion. Página `reservas.html` creada: flujo servicio → fecha/hora → datos → confirmar, con resumen en vivo y envío por WhatsApp. Añadido `netlify.toml` para desplegar como sitio estático.
+- **2026-07-28** — Sesión de ajustes con feedback de Rafael:
+  - ✅ Poste eliminado del hero y de "Sobre mí" (no gustaba).
+  - ✅ Fondo cambiado de negro puro a **gris carbón `#232221`**.
+  - ✅ Tipografía cambiada a **Playfair Display** (más legible y usada que la Bodoni).
+  - ✅ Botón **"Reservar cita" flotante** que aparece al bajar y te sigue.
+  - ✅ Banderas de idioma también en **footer** y en la **barra flotante**.
+  - ✅ **Auditoría móvil**: hero ajustado, CTAs apiladas, stats en rejilla, galería a 2 columnas, se elimina overflow.
+  - ✅ **Naranja de marca corregido a `#cc4f02`** (el del logo/preferencia de Rafael) en toda la web. Nota: el píxel puro del PNG del logo es `#FC6000`; se usa `#cc4f02` por decisión de marca.
+  - ✅ **Textos legales reales extraídos** de su web y montados en `legal.html` (Aviso legal, Privacidad, Cookies, Accesibilidad) + enlaces en el footer. Datos: Titular Victoria Rodríguez, NIF 34529217T, C/ Minas 14.
+  - ✅ Netlify: creado `netlify.toml` (sitio estático, sin build). Falta hacer `git push` para que despliegue bien.
+
+## Ideas pendientes de Rafael (28 jul) — POR HACER
+
+- ⏳ **Scroll horizontal** estilo [hisbarberia.com](https://www.hisbarberia.com) (una sección que se desplaza en horizontal al bajar). Candidata: la galería o una tira de "proceso/ritual". Con nuestros colores.
+- ⏳ **Fondos difuminados / glassmorphism** (frosted glass, blobs de luz suaves) manteniendo paleta y esencia.
+- ⏳ **Ideas de Pinterest**: pendiente (Pinterest requiere login y no se puede scrapear fácil; tirar de hisbarbería + criterio de diseño).
+- ⏳ Pulir títulos de la página legal (numeración romana en mayúsculas correcta).
