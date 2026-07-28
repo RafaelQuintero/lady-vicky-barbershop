@@ -125,13 +125,17 @@
   .serv-sticky{position:sticky;top:110px}
   .serv-sticky p{color:var(--muted-light);margin:22px 0 30px;max-width:34ch}
   .serv-list{border-top:1px solid var(--line-light)}
-  .serv-row{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:26px 22px;border-bottom:1px solid var(--line-light);margin:0 -22px;border-radius:var(--r);transition:background .3s ease,color .3s ease,transform .3s ease}
-  .serv-row h3{font-size:1.55rem}
-  .serv-row .desc{font-size:.94rem;color:var(--muted-light);margin-top:6px;max-width:46ch;transition:color .3s ease}
-  .serv-price{text-align:right;font-family:var(--serif);font-size:1.8rem;white-space:nowrap}
-  .serv-price small{display:block;font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-light);margin-top:6px;transition:color .3s ease}
-  .serv-row:hover{background:var(--ink);color:var(--cream);transform:translateX(4px)}
-  .serv-row:hover .desc,.serv-row:hover .serv-price small{color:var(--muted-dark)}
+  .serv-row{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:26px 40px 26px 26px;border-bottom:1px solid var(--line-light);margin:0 -22px;border-radius:var(--r);position:relative;transition:background .35s ease}
+  .serv-row::before{content:"";position:absolute;left:8px;top:20%;bottom:20%;width:3px;border-radius:3px;background:var(--orange-ink);transform:scaleY(0);transform-origin:center;transition:transform .4s var(--eo)}
+  .serv-row::after{content:"\2192";position:absolute;right:16px;top:50%;transform:translate(10px,-50%);opacity:0;color:var(--orange-ink);font-size:1.4rem;transition:opacity .35s var(--eo),transform .35s var(--eo)}
+  .serv-row h3{font-size:1.55rem;transition:color .3s ease}
+  .serv-row .desc{font-size:.94rem;color:var(--muted-light);margin-top:6px;max-width:46ch}
+  .serv-price{text-align:right;font-family:var(--serif);font-size:1.8rem;white-space:nowrap;transition:color .3s ease}
+  .serv-price small{display:block;font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-light);margin-top:6px}
+  .serv-row:hover{background:rgba(11,11,11,.04)}
+  .serv-row:hover::before{transform:scaleY(1)}
+  .serv-row:hover::after{opacity:1;transform:translate(0,-50%)}
+  .serv-row:hover h3,.serv-row:hover .serv-price{color:var(--orange-ink)}
 
   /* Doble tarjeta */
   .duo{display:grid;grid-template-columns:1fr 1fr;gap:28px}
@@ -190,6 +194,30 @@
   .glow-1{width:440px;height:440px;background:radial-gradient(circle,rgba(204,79,2,.15),transparent 68%);top:-160px;left:-140px}
   .glow-2{width:440px;height:440px;background:radial-gradient(circle,rgba(204,79,2,.16),transparent 70%);right:-120px;top:12%}
   @media(prefers-reduced-transparency:reduce){.glow{display:none}}
+
+  /* Revelado de texto palabra a palabra (hisbarbería) */
+  .wm{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.14em;margin-bottom:-.14em}
+  .wi{display:inline-block;transform:translateY(115%);opacity:0;transition:transform .8s var(--eo),opacity .5s var(--eo);transition-delay:calc(var(--wi,0)*.05s)}
+  .js-words.in .wi{transform:translateY(0);opacity:1}
+  .js .hero-copy>h1.js-words{animation:none;opacity:1}
+  /* Zoom / parallax en fotos */
+  .hero-photo img,.about-photo img{transition:transform .9s var(--eo)}
+  .about-photo img{transform:scale(1.06)}
+  @media(hover:hover){.hero-photo:hover img{transform:scale(1.05)}}
+  @supports (animation-timeline:view()){
+    @media(min-width:768px) and (prefers-reduced-motion:no-preference){
+      .about-photo img{animation:aboutPar linear both;animation-timeline:view();animation-range:cover}
+    }
+  }
+  @keyframes aboutPar{from{transform:translateY(-5%) scale(1.12)}to{transform:translateY(5%) scale(1.12)}}
+  /* Luz difuminada en secciones oscuras */
+  #filosofia,#contacto{position:relative;overflow:hidden}
+  #filosofia .wrap,#contacto .wrap{position:relative;z-index:1}
+  #filosofia::before,#contacto::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;filter:blur(100px);background:radial-gradient(circle,rgba(204,79,2,.10),transparent 70%);pointer-events:none;z-index:0}
+  #filosofia::before{top:-180px;right:-140px}
+  #contacto::before{bottom:-200px;left:-160px}
+  @media(prefers-reduced-transparency:reduce){#filosofia::before,#contacto::before{display:none}}
+  @media(prefers-reduced-motion:reduce){.wi{transform:none!important;opacity:1!important;transition:none!important}}
 
   @media(max-width:899px){
     .galh-track{padding:70px 18px}
@@ -289,8 +317,10 @@
   }
   /* Táctil: evitar hover "pegado" */
   @media(hover:none){
-    .serv-row:hover{background:transparent;color:var(--ink);transform:none}
-    .serv-row:hover .desc,.serv-row:hover .serv-price small{color:var(--muted-light)}
+    .serv-row:hover{background:transparent}
+    .serv-row:hover::before{transform:scaleY(0)}
+    .serv-row:hover::after{opacity:0}
+    .serv-row:hover h3,.serv-row:hover .serv-price{color:inherit}
     .pillar:hover{background:transparent;color:inherit;transform:none;border-color:var(--line-dark)}
     .pillar:hover i{color:var(--orange)}
     .pillar:hover p{color:var(--muted-dark)}
@@ -386,7 +416,7 @@
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <span class="label" data-i18n="hero.eyebrow">Barbería tradicional · Malasaña, Madrid</span>
-      <h1 data-i18n-html="hero.h1">Barbería tradicional y con <span class="em">estilo</span> en el corazón de Malasaña</h1>
+      <h1 class="js-words" data-i18n-html="hero.h1">Barbería tradicional y con <span class="em">estilo</span> en el corazón de Malasaña</h1>
       <p class="sub" data-i18n="hero.sub">Un solo sillón, un cliente por turno. Cortes y barba con más de 30 años de oficio.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="reservas.html"><i class="ph ph-calendar-check"></i><span data-i18n="cta.reservar">Reservar cita</span></a>
@@ -421,7 +451,7 @@
   <div class="wrap serv-grid">
     <div class="serv-sticky reveal">
       <span class="label" data-i18n="serv.label">Servicios</span>
-      <h2 class="serif" style="font-size:clamp(2rem,4vw,3rem);margin-top:16px" data-i18n="serv.h2">Cada corte, con su tiempo</h2>
+      <h2 class="serif js-words" style="font-size:clamp(2rem,4vw,3rem);margin-top:16px" data-i18n="serv.h2">Cada corte, con su tiempo</h2>
       <p data-i18n="serv.intro">Sin prisas ni salas llenas. Reserva el tuyo por WhatsApp y ven cuando te toque.</p>
       <a class="btn btn-primary" href="reservas.html"><i class="ph ph-calendar-check"></i><span data-i18n="cta.reservar">Reservar cita</span></a>
     </div>
@@ -482,7 +512,7 @@
     </div>
     <div class="about-body reveal">
       <span class="label" data-i18n="about.label">Sobre mí</span>
-      <h2 data-i18n="about.h2">Más de 30 años detrás del sillón</h2>
+      <h2 class="js-words" data-i18n="about.h2">Más de 30 años detrás del sillón</h2>
       <p data-i18n="about.p1">Soy Victoria Rodríguez Vega, fundadora de Lady Vicky Barbershop. Aquí no hay prisas ni salas llenas: un solo sillón, un cliente cada vez y toda mi atención puesta en ti.</p>
       <p data-i18n="about.p2">Combino la técnica clásica con las tendencias de hoy, y te atiendo en español, inglés o francés. Cada cita es una experiencia privada, pensada para que salgas como quieres salir.</p>
       <div class="sign">Victoria Rodríguez Vega<small data-i18n="about.role">Fundadora · Lady Vicky Barbershop</small></div>
@@ -495,7 +525,7 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="label" data-i18n="phil.label">Filosofía</span>
-      <h2 data-i18n="phil.h2">Por qué elegirnos</h2>
+      <h2 class="js-words" data-i18n="phil.h2">Por qué elegirnos</h2>
     </div>
     <div class="pillars reveal-stagger">
       <div class="pillar reveal"><i class="ph ph-medal"></i><h3 class="serif" data-i18n="p1.t">Experiencia</h3><p data-i18n="p1.d">Más de tres décadas de oficio en cada corte.</p></div>
@@ -511,7 +541,7 @@
   <div class="galh-track" id="galhTrack">
     <div class="galh-intro">
       <span class="label" data-i18n="gal.label">Galería</span>
-      <h2 data-i18n="gal.h2">El trabajo habla</h2>
+      <h2 class="js-words" data-i18n="gal.h2">El trabajo habla</h2>
       <p class="galh-sub" data-i18n="gal.sub">Desliza para ver cortes, barbas y el ambiente del local.</p>
       <a class="btn btn-ghost" href="https://instagram.com/ladyvicky_barbershop" target="_blank" rel="noopener"><i class="ph ph-instagram-logo"></i>@ladyvicky_barbershop</a>
     </div>
@@ -532,7 +562,7 @@
   <div class="wrap rev-grid">
     <div class="rev-lead reveal">
       <span class="label" data-i18n="rev.label">Opiniones</span>
-      <h2 data-i18n="rev.h2">Lo que dicen de nosotros</h2>
+      <h2 class="js-words" data-i18n="rev.h2">Lo que dicen de nosotros</h2>
       <p data-i18n="rev.p">La confianza de quienes vuelven cada mes es nuestra mejor carta de presentación.</p>
       <a class="btn btn-primary" href="https://www.google.com/maps/place/Lady+Vicky+Barbershop/@40.4246435,-3.7062674,17z/data=!4m6!3m5!1s0xd41923fda0f80d9:0x36847448aa258164!8m2!3d40.4246435!4d-3.7059696" target="_blank" rel="noopener"><i class="ph ph-star"></i><span data-i18n="rev.cta">Ver reseñas en Google</span></a>
     </div>
@@ -550,7 +580,7 @@
   <div class="wrap">
     <div class="sec-head reveal" style="margin-bottom:48px">
       <span class="label" data-i18n="con.label">Contacto</span>
-      <h2 data-i18n="con.h2">Encuéntranos en Malasaña</h2>
+      <h2 class="js-words" data-i18n="con.h2">Encuéntranos en Malasaña</h2>
     </div>
     <div class="con-grid">
       <div class="reveal">
@@ -710,6 +740,36 @@
     fr:"Bonjour ! Je voudrais un rendez-vous, s'il vous plaît"
   };
 
+  // ---- Revelado de texto palabra a palabra ----
+  const wordIO = new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+  }, {threshold:0.25, rootMargin:'0px 0px -30px 0px'});
+  function splitWords(el){
+    const nodes=[...el.childNodes]; el.innerHTML=''; let i=0;
+    const add=(content)=>{
+      const wm=document.createElement('span'); wm.className='wm';
+      const wi=document.createElement('span'); wi.className='wi'; wi.style.setProperty('--wi', i++);
+      if(typeof content==='string') wi.textContent=content; else wi.appendChild(content);
+      wm.appendChild(wi); el.appendChild(wm);
+    };
+    nodes.forEach(node=>{
+      if(node.nodeType===3){
+        node.textContent.split(/(\s+)/).forEach(tok=>{
+          if(tok==='') return;
+          if(/^\s+$/.test(tok)){ el.appendChild(document.createTextNode(' ')); return; }
+          add(tok);
+        });
+      } else if(node.nodeType===1){ add(node.cloneNode(true)); }
+    });
+  }
+  function applyWords(){
+    document.querySelectorAll('.js-words').forEach(el=>{
+      el.classList.remove('in');
+      splitWords(el);
+      wordIO.unobserve(el); wordIO.observe(el);
+    });
+  }
+
   function setLang(lang){
     document.documentElement.lang = lang;
     document.querySelectorAll('[data-i18n]').forEach(el=>{
@@ -723,6 +783,7 @@
     const wa = "https://wa.me/34651599180?text=" + encodeURIComponent(WA_MSG[lang]);
     document.querySelectorAll('.js-wa').forEach(a=>a.setAttribute('href', wa));
     document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+    applyWords();
     try{ localStorage.setItem('lv_lang', lang); }catch(e){}
   }
 
