@@ -318,9 +318,11 @@
   }
   /* Táctil: evitar hover "pegado" */
   @media(hover:none){
+    .serv-row{cursor:pointer}
+    .serv-row::before{transform:scaleY(0)}
+    .serv-row::after{opacity:.5;transform:translate(0,-50%)}
+    .serv-row:active{background:rgba(11,11,11,.06)}
     .serv-row:hover{background:transparent}
-    .serv-row:hover::before{transform:scaleY(0)}
-    .serv-row:hover::after{opacity:0}
     .serv-row:hover h3,.serv-row:hover .serv-price{color:inherit}
     .pillar:hover{background:transparent;color:inherit;transform:none;border-color:var(--line-dark)}
     .pillar:hover i{color:var(--orange)}
@@ -839,6 +841,12 @@
     entries.forEach(e=>{ if(e.isIntersecting){ const t=e.target; t.classList.add('in'); io.unobserve(t); t.querySelectorAll('.n').forEach(countEl); } });
   }, {threshold:0.16, rootMargin:'0px 0px -60px 0px'});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Tocar/clicar un servicio lleva a reservar
+  document.querySelectorAll('.serv-row').forEach(r=>{
+    r.style.cursor='pointer';
+    r.addEventListener('click', ()=>{ window.location.href='reservas.html'; });
+  });
 
   /* hero stats count as they fade in */
   setTimeout(()=> document.querySelectorAll('.hero .stat .n').forEach(countEl), 620);
